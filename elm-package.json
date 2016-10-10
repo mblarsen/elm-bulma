@@ -1,6 +1,6 @@
 {
     "version": "0.1.0",
-    "summary": "Elm wrapper of bulma.io",
+    "summary": "Elm wrapper of the CSS framework bulma.io",
     "repository": "https://github.com/mblarsen/elm-bulma.git",
     "license": "BSD3",
     "source-directories": [

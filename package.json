@@ -1,7 +1,7 @@
 {
   "name": "elm-bulma",
   "version": "0.1.0",
-  "description": "Elm wrapper of bulma.io",
+  "description": "Elm wrapper of the CSS framework bulma.io",
   "main": "index.js",
   "scripts": {
     "api": "node api.js",

@@ -17,7 +17,7 @@
     "flex"
   ],
   "author": "Michael Bøcker-Larsen",
-  "license": "ISC",
+  "license": "BSD3",
   "devDependencies": {
     "elm-webpack-loader": "^3.0.6",
     "file-loader": "^0.9.0",

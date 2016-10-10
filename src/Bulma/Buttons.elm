@@ -5,6 +5,7 @@ module Bulma.Buttons
         , button
         , buttonWithIcon
         , buttonGroup
+        , buttonAddonGroup
           ---------------------------------------------------
         , defaultButton
         , primaryButton
@@ -36,7 +37,7 @@ module Bulma.Buttons
 @docs buttonWithIcon, defaultButtonWithIcon, primaryButtonWithIcon, infoButtonWithIcon, successButtonWithIcon, warningButtonWithIcon, dangerButtonWithIcon, linkButtonWithIcon, lightButtonWithIcon
 
 # Groups
-@docs buttonGroup
+@docs buttonGroup, buttonAddonGroup
 -}
 
 import Html exposing (..)
@@ -208,6 +209,21 @@ buttonGroup buttons attributes =
             :: attributes
         )
         (List.map (\b -> p [ class "control" ] [ b ]) buttons)
+
+
+{-| Groups several buttons together.
+-}
+buttonAddonGroup : List (Html msg) -> List (Attribute msg) -> Html msg
+buttonAddonGroup buttons attributes =
+    div
+        ((class "control has-addons")
+            :: attributes
+        )
+        buttons
+
+
+
+-- (List.map (\b -> p [ class "control" ] [ b ]) buttons)
 
 
 {-| Creates button of ButtonType

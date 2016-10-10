@@ -76,8 +76,14 @@ view model =
         , buttonGroup
             [ defaultButton [] [] "Click me"
             , button BtnPrimary [] [] "Click me"
-            , defaultButtonWithIcon [] [] "Click me" (normalIcon IconLock [])
-            , buttonWithIcon BtnPrimary [] [] "Click me" (normalIcon IconLock [])
+            , defaultButtonWithIcon [] [] "Click me" (smallIcon IconLock [])
+            , buttonWithIcon BtnPrimary [] [] "Click me" (smallIcon IconLock [])
+            ]
+            []
+        , buttonAddonGroup
+            [ defaultButtonWithIcon [] [] "left" (smallIcon IconAlignLeft [])
+            , defaultButtonWithIcon [] [] "center" (smallIcon IconAlignCenter [])
+            , defaultButtonWithIcon [] [] "right" (smallIcon IconAlignRight [])
             ]
             []
         , buttonGroup

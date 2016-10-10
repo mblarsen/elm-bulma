@@ -32,6 +32,9 @@ type Icon
     | IconLock
     | IconShoppingCart
     | IconTimes
+    | IconAlignLeft
+    | IconAlignCenter
+    | IconAlignRight
 
 
 {-| Size of the icon
@@ -119,5 +122,14 @@ iconClass anIcon =
 
                 IconTimes ->
                     "times"
+
+                IconAlignLeft ->
+                    "align-left"
+
+                IconAlignCenter ->
+                    "align-center"
+
+                IconAlignRight ->
+                    "align-right"
     in
         class ("fa fa-" ++ classString)

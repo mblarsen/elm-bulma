@@ -96,7 +96,7 @@ view model =
             , button BtnLink [ BtnLoading ] [] "Loading"
             , button BtnLink [ BtnInverted ] [] "Inverted"
             , button BtnLink [ BtnOutlined ] [] "Outlined"
-            , buttonWithIcon BtnLight [ BtnIconAfter ] [] "Outlined" (normalIcon IconTimes [])
+            , buttonWithIcon BtnLight [ BtnIconAfter ] [] "Outlined" (smallIcon IconTimes [])
             ]
             []
         , buttonGroup
@@ -111,9 +111,12 @@ view model =
             , button BtnDanger [ BtnOutlined ] [] "Outlined"
             ]
             []
-        , warningButtonWithIcon [] [] "Unlock" (smallIcon IconLock [])
-        , dangerButtonWithIcon [ BtnSmall, BtnIconAfter ] [] "Delete" (smallIcon IconTimes [])
-        , buttonWithIcon BtnSuccess [ BtnLarge, BtnOutlined ] [] "" (normalIcon IconShoppingCart [])
+        , buttonGroup
+            [ warningButtonWithIcon [] [] "Unlock" (smallIcon IconLock [])
+            , dangerButtonWithIcon [ BtnSmall, BtnIconAfter ] [] "Delete" (smallIcon IconTimes [])
+            , buttonWithIcon BtnSuccess [ BtnLarge, BtnOutlined ] [] "" (normalIcon IconShoppingCart [])
+            ]
+            []
         , div []
             [ largeIcon IconShoppingCart []
             , mediumIcon IconShoppingCart []
@@ -121,11 +124,11 @@ view model =
             , smallIcon IconShoppingCart []
             , icon IconSmall IconShoppingCart []
             ]
-        , div [] [ text (toString model) ]
+        , div [] [ dangerButton [ BtnLarge ] [] ("Clicks: " ++ (toString model)) ]
         , div [ style [ ( "background-color", "white" ) ] ]
             [ notification NotificationDefault [ onClick Increment ] [] [ text "Click close button to test onClick" ]
             , notification NotificationInfo [] [ onClick Increment ] [ text "Click me to test onClick" ]
-            , notification NotificationSuccess [] [] [ text "Info lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing eli" ]
-            , notification NotificationDanger [] [] [ text "Info lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing eli" ]
+            , notification NotificationSuccess [] [] [ text "lorem ipsum dolor sit amet" ]
+            , notification NotificationDanger [] [] [ text "lorem ipsum dolor sit amet" ]
             ]
         ]

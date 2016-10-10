@@ -2,12 +2,18 @@ module Bulma.Icons
     exposing
         ( Icon(..)
         , IconSize(..)
-        , icn
+        , icon
+        , normalIcon
+        , smallIcon
+        , mediumIcon
+        , largeIcon
         )
 
-{-| Icons wrapper. Bulma.io uses Font Awesome icons.
+{-| Bulma is compatible with Font Awesome icons.
 
-@docs Icon, IconSize, icn
+Make sure to include [Font Awesome](http://fontawesome.io/).
+
+@docs Icon, IconSize, icon, normalIcon, smallIcon, mediumIcon, largeIcon
 -}
 
 import Html exposing (..)
@@ -16,6 +22,10 @@ import String
 
 
 {-| Icon types
+The icon tags are named in the same way as Font Awesome but in TitleCase and
+without the `fa` prefix.
+
+E.g. `fa-shopping-cart` is named `IconShoppingCart`.
 -}
 type Icon
     = IconUsd
@@ -27,41 +37,77 @@ type Icon
 {-| Size of the icon
 -}
 type IconSize
-    = IconSmall Icon
-    | IconNormal Icon
-    | IconMedium Icon
-    | IconLarge Icon
+    = IconSmall
+    | IconNormal
+    | IconMedium
+    | IconLarge
 
 
-{-| Creates icon
+{-| Creates a normal icon
 -}
-icn : IconSize -> List (Attribute msg) -> Html msg
-icn icon' attributes =
+normalIcon : Icon -> List (Attribute msg) -> Html msg
+normalIcon anIcon attributes =
+    icon IconNormal anIcon attributes
+
+
+{-| Creates a small icon
+-}
+smallIcon : Icon -> List (Attribute msg) -> Html msg
+smallIcon anIcon attributes =
+    icon IconSmall anIcon attributes
+
+
+{-| Creates a small icon
+-}
+mediumIcon : Icon -> List (Attribute msg) -> Html msg
+mediumIcon anIcon attributes =
+    icon IconMedium anIcon attributes
+
+
+{-| Creates a small icon
+-}
+largeIcon : Icon -> List (Attribute msg) -> Html msg
+largeIcon anIcon attributes =
+    icon IconLarge anIcon attributes
+
+
+{-| Creates an icon
+The base function for creating icons. E.g.
+
+    icon IconSmall IconShoppingCart []
+-}
+icon : IconSize -> Icon -> List (Attribute msg) -> Html msg
+icon size anIcon attributes =
+    span [ sizeClass size ]
+        [ i [ iconClass anIcon ] []
+        ]
+
+
+sizeClass : IconSize -> Attribute msg
+sizeClass size =
     let
-        iconClasses =
-            case icon' of
-                IconSmall anIcon ->
-                    ( "is-small", iconClass anIcon )
+        classString =
+            case size of
+                IconSmall ->
+                    "is-small"
 
-                IconNormal anIcon ->
-                    ( "", iconClass anIcon )
+                IconNormal ->
+                    ""
 
-                IconMedium anIcon ->
-                    ( "is-medium", iconClass anIcon )
+                IconMedium ->
+                    "is-medium"
 
-                IconLarge anIcon ->
-                    ( "is-large", iconClass anIcon )
+                IconLarge ->
+                    "is-large"
     in
-        span [ class (String.join " " [ "icon", fst iconClasses ]) ]
-            [ i [ snd iconClasses ] []
-            ]
+        class ("icon " ++ classString)
 
 
 iconClass : Icon -> Attribute msg
-iconClass icon' =
+iconClass anIcon =
     let
         classString =
-            case icon' of
+            case anIcon of
                 IconUsd ->
                     "usd"
 

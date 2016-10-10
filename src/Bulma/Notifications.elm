@@ -1,5 +1,10 @@
 module Bulma.Notifications exposing (notification, NotificationType(..))
 
+{-| Bold notification blocks, to alert your users of something.
+
+@docs notification
+-}
+
 import Html exposing (..)
 import Html.Attributes exposing (class)
 import String
@@ -14,6 +19,8 @@ type NotificationType
     | NotificationDanger
 
 
+{-| Create notification
+-}
 notification : NotificationType -> List (Attribute msg) -> List (Attribute msg) -> List (Html msg) -> Html msg
 notification aType closeButtonAtrributes attributes children =
     div ((notificationClass aType) :: attributes)

@@ -1,16 +1,12 @@
 module Main exposing (..)
 
-import Html exposing (..)
+import Html exposing (Html, div, text, h1)
 import Html.Attributes exposing (id, class, style)
 import Html.Events exposing (onClick)
 import Html.App as Html
 import Bulma.Buttons exposing (..)
 import Bulma.Icons exposing (..)
 import Bulma.Notifications exposing (..)
-
-
---import Html.Attributes exposing (..)
---import Html.Events exposing (onClick)
 
 
 main : Program Never
@@ -76,51 +72,48 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div []
-        [ text ""
-        , btnPrimary [] [] "Click me"
-        , btnSuccess [ BtnSmall, BtnInverted ] [] "Click me"
-        , btnPrimary [ BtnLarge, BtnLoading ] [] "Click me"
-        , btnGroup
-            [ btnPrimary [] [] "I'm dangerous"
-            , btnLink [] [] "Not like me"
-            , btnDanger [] [] "Especially not like me"
-            , btn BtnDanger [ BtnActive ] [] "Active"
-            , btn BtnDanger [ BtnDisabled ] [] "Disabled"
-            , btn BtnDanger [ BtnLoading ] [] "Loading"
-            , btn BtnDanger [ BtnInverted ] [] "Inverted"
-            , btn BtnDanger [ BtnOutlined ] [] "Outlined"
+        [ h1 [ class "title" ] [ text "Demo" ]
+        , buttonGroup
+            [ defaultButton [] [] "Click me"
+            , button BtnPrimary [] [] "Click me"
+            , defaultButtonWithIcon [] [] "Click me" (normalIcon IconLock [])
+            , buttonWithIcon BtnPrimary [] [] "Click me" (normalIcon IconLock [])
             ]
             []
-        , btnGroup
-            [ btn BtnLight [] [] "I'm dangerous"
-            , btnLink [] [] "Not like me"
-            , btn BtnDark [] [] "Especially not like me"
-            , btn BtnDark [ BtnActive ] [] "Active"
-            , btn BtnDark [ BtnDisabled ] [] "Disabled"
-            , btn BtnDark [ BtnLoading ] [] "Loading"
-            , btn BtnDark [ BtnInverted ] [] "Inverted"
-            , btn BtnDark [ BtnOutlined ] [] "Outlined"
+        , buttonGroup
+            [ button BtnPrimary [] [] "I'm dangerous"
+            , defaultButton [] [] "Not like me"
+            , button BtnLink [] [] "Not like me"
+            , button BtnLink [] [] "Especially not like me"
+            , button BtnLink [ BtnActive ] [] "Active"
+            , button BtnLink [ BtnDisabled ] [] "Disabled"
+            , button BtnLink [ BtnLoading ] [] "Loading"
+            , button BtnLink [ BtnInverted ] [] "Inverted"
+            , button BtnLink [ BtnOutlined ] [] "Outlined"
+            , buttonWithIcon BtnLight [ BtnIconAfter ] [] "Outlined" (normalIcon IconTimes [])
             ]
             []
-        , btnGroup
-            [ btn BtnInfo [] [] "I'm dangerous"
-            , btnLink [] [] "Not like me"
-            , btn BtnBlack [] [] "Especially not like me"
-            , btn BtnBlack [ BtnActive ] [] "Active"
-            , btn BtnBlack [ BtnDisabled ] [] "Disabled"
-            , btn BtnBlack [ BtnLoading ] [] "Loading"
-            , btn BtnBlack [ BtnInverted ] [] "Inverted"
-            , btn BtnBlack [ BtnOutlined ] [] "Outlined"
+        , buttonGroup
+            [ button BtnDanger [] [] "I'm dangerous"
+            , warningButton [] [] "Not like me"
+            , button BtnLink [] [] "Not like me"
+            , button BtnDanger [] [] "Especially not like me"
+            , button BtnDanger [ BtnActive ] [] "Active"
+            , button BtnDanger [ BtnDisabled ] [] "Disabled"
+            , button BtnDanger [ BtnLoading ] [] "Loading"
+            , button BtnDanger [ BtnInverted ] [] "Inverted"
+            , button BtnDanger [ BtnOutlined ] [] "Outlined"
             ]
             []
-        , btnWarning [ BtnIcon (IconNormal IconLock) ] [] "Unlock"
-        , btnDanger [ BtnSmall, BtnIconAfter (IconSmall IconTimes) ] [] "Delete"
-        , btnSuccess [ BtnLarge, BtnOutlined, BtnIcon (IconNormal IconLock) ] [] ""
+        , warningButtonWithIcon [] [] "Unlock" (smallIcon IconLock [])
+        , dangerButtonWithIcon [ BtnSmall, BtnIconAfter ] [] "Delete" (smallIcon IconTimes [])
+        , buttonWithIcon BtnSuccess [ BtnLarge, BtnOutlined ] [] "" (normalIcon IconShoppingCart [])
         , div []
-            [ icn (IconLarge IconShoppingCart) [ class "is-info" ]
-            , icn (IconMedium IconShoppingCart) [ class "is-info" ]
-            , icn (IconNormal IconShoppingCart) [ class "is-info" ]
-            , icn (IconSmall IconShoppingCart) [ class "is-info" ]
+            [ largeIcon IconShoppingCart []
+            , mediumIcon IconShoppingCart []
+            , normalIcon IconShoppingCart []
+            , smallIcon IconShoppingCart []
+            , icon IconSmall IconShoppingCart []
             ]
         , div [] [ text (toString model) ]
         , div [ style [ ( "background-color", "white" ) ] ]

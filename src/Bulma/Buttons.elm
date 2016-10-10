@@ -2,15 +2,27 @@ module Bulma.Buttons
     exposing
         ( ButtonType(..)
         , ButtonModifier(..)
-        , btn
-        , btnDanger
-        , btnDefault
-        , btnGroup
-        , btnInfo
-        , btnLink
-        , btnPrimary
-        , btnSuccess
-        , btnWarning
+        , button
+        , buttonWithIcon
+        , buttonGroup
+          ---------------------------------------------------
+        , defaultButton
+        , primaryButton
+        , infoButton
+        , successButton
+        , warningButton
+        , dangerButton
+        , linkButton
+        , lightButton
+          ---------------------------------------------------
+        , defaultButtonWithIcon
+        , primaryButtonWithIcon
+        , infoButtonWithIcon
+        , successButtonWithIcon
+        , warningButtonWithIcon
+        , dangerButtonWithIcon
+        , linkButtonWithIcon
+        , lightButtonWithIcon
         )
 
 {-| Buttons
@@ -18,22 +30,25 @@ module Bulma.Buttons
 @docs ButtonType, ButtonModifier
 
 # Buttons
-@docs btn, btnDanger, btnDefault, btnInfo, btnLink, btnPrimary, btnSuccess, btnWarning
+@docs button, defaultButton, primaryButton, infoButton, successButton, warningButton, dangerButton, linkButton, lightButton
+
+# Buttons with icons
+@docs buttonWithIcon, defaultButtonWithIcon, primaryButtonWithIcon, infoButtonWithIcon, successButtonWithIcon, warningButtonWithIcon, dangerButtonWithIcon, linkButtonWithIcon, lightButtonWithIcon
 
 # Groups
-@docs btnGroup
+@docs buttonGroup
 -}
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
 import String
-import Bulma.Icons exposing (icn, Icon(..), IconSize(..))
+import Bulma.Icons exposing (Icon(..), IconSize(..))
 
 
 type RenderStyle
     = RenderAsButton
-    | RenderAsAnchorIconAfter IconSize
-    | RenderAsAnchorIconBefore IconSize
+    | RenderAsAnchorIconAfter
+    | RenderAsAnchorIconBefore
 
 
 {-| Button types
@@ -65,14 +80,129 @@ type ButtonModifier
     | BtnLoading
     | BtnActive
     | BtnDisabled
-    | BtnIcon IconSize
-    | BtnIconAfter IconSize
+    | BtnIconAfter
+
+
+{-| Default button
+-}
+defaultButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+defaultButton modifiers attributes buttonText =
+    button BtnDefault modifiers attributes buttonText
+
+
+{-| Default button with icon
+-}
+defaultButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+defaultButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnDefault modifiers attributes children anIcon
+
+
+{-| Primary button
+-}
+primaryButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+primaryButton modifiers attributes buttonText =
+    button BtnPrimary modifiers attributes buttonText
+
+
+{-| Primary button with icon
+-}
+primaryButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+primaryButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnPrimary modifiers attributes children anIcon
+
+
+{-| Info button
+-}
+infoButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+infoButton modifiers attributes buttonText =
+    button BtnInfo modifiers attributes buttonText
+
+
+{-| Info button with icon
+-}
+infoButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+infoButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnInfo modifiers attributes children anIcon
+
+
+{-| Success button
+-}
+successButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+successButton modifiers attributes buttonText =
+    button BtnSuccess modifiers attributes buttonText
+
+
+{-| Success button with icon
+-}
+successButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+successButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnSuccess modifiers attributes children anIcon
+
+
+{-| Warning button
+-}
+warningButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+warningButton modifiers attributes buttonText =
+    button BtnWarning modifiers attributes buttonText
+
+
+{-| Warning button with icon
+-}
+warningButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+warningButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnWarning modifiers attributes children anIcon
+
+
+{-| Danger button
+-}
+dangerButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+dangerButton modifiers attributes buttonText =
+    button BtnDanger modifiers attributes buttonText
+
+
+{-| Danger button with icon
+-}
+dangerButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+dangerButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnDanger modifiers attributes children anIcon
+
+
+{-| Link button
+-}
+linkButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+linkButton modifiers attributes buttonText =
+    button BtnLink modifiers attributes buttonText
+
+
+{-| Link button with icon
+-}
+linkButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+linkButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnLink modifiers attributes children anIcon
+
+
+{-| Light button
+-}
+lightButton : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+lightButton modifiers attributes buttonText =
+    button BtnLight modifiers attributes buttonText
+
+
+{-| Light button with icon
+-}
+lightButtonWithIcon : List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+lightButtonWithIcon modifiers attributes children anIcon =
+    buttonWithIcon BtnLight modifiers attributes children anIcon
+
+
+
+---------------------------------------------------
 
 
 {-| Groups several buttons together.
 -}
-btnGroup : List (Html msg) -> List (Attribute msg) -> Html msg
-btnGroup buttons attributes =
+buttonGroup : List (Html msg) -> List (Attribute msg) -> Html msg
+buttonGroup buttons attributes =
     div
         ((class "control is-grouped")
             :: attributes
@@ -80,104 +210,65 @@ btnGroup buttons attributes =
         (List.map (\b -> p [ class "control" ] [ b ]) buttons)
 
 
-{-| Default button
--}
-btnDefault : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btnDefault modifiers attributes children =
-    btn BtnDefault modifiers attributes children
-
-
-{-| Primary button
--}
-btnPrimary : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btnPrimary modifiers attributes buttonText =
-    btn BtnPrimary modifiers attributes buttonText
-
-
-{-| Info button
--}
-btnInfo : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btnInfo modifiers attributes buttonText =
-    btn BtnInfo modifiers attributes buttonText
-
-
-{-| Success button
--}
-btnSuccess : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btnSuccess modifiers attributes buttonText =
-    btn BtnSuccess modifiers attributes buttonText
-
-
-{-| Warning button
--}
-btnWarning : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btnWarning modifiers attributes buttonText =
-    btn BtnWarning modifiers attributes buttonText
-
-
-{-| Danger button
--}
-btnDanger : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btnDanger modifiers attributes buttonText =
-    btn BtnDanger modifiers attributes buttonText
-
-
-{-| Link button
--}
-btnLink : List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btnLink modifiers attributes buttonText =
-    btn BtnLink modifiers attributes buttonText
-
-
 {-| Creates button of ButtonType
 -}
-btn : ButtonType -> List ButtonModifier -> List (Attribute msg) -> String -> Html msg
-btn type' modifiers attributes buttonText =
+button : ButtonType -> List ButtonModifier -> List (Attribute msg) -> String -> Html msg
+button type' modifiers attributes buttonText =
     let
-        classAttribute =
-            (typeToString type')
-                :: List.map modifierToString modifiers
-                |> (::) "button"
-                |> String.join " "
-                |> class
-
         combinedAttributes =
-            classAttribute :: attributes
+            (buttonClass type' modifiers) :: attributes
     in
-        render (determineRenderStyle modifiers) combinedAttributes buttonText
+        render RenderAsButton combinedAttributes buttonText Nothing
+
+
+{-| Creates button of ButtonType and insert icon. Use `BtnIconAfter` modifier
+to move icon to the right.
+-}
+buttonWithIcon : ButtonType -> List ButtonModifier -> List (Attribute msg) -> String -> Html msg -> Html msg
+buttonWithIcon type' modifiers attributes buttonText icon =
+    let
+        combinedAttributes =
+            (buttonClass type' modifiers) :: attributes
+    in
+        render (determineRenderStyle modifiers) combinedAttributes buttonText (Just icon)
 
 
 determineRenderStyle : List ButtonModifier -> RenderStyle
 determineRenderStyle modifiers =
-    case modifiers of
-        [] ->
-            RenderAsButton
+    let
+        hasAfterModifier =
+            List.filter (\m -> m == BtnIconAfter) modifiers
+    in
+        case List.head hasAfterModifier of
+            Just _ ->
+                RenderAsAnchorIconAfter
 
-        hd :: tl ->
-            case hd of
-                BtnIcon icon ->
-                    RenderAsAnchorIconBefore icon
-
-                BtnIconAfter icon ->
-                    RenderAsAnchorIconAfter icon
-
-                _ ->
-                    determineRenderStyle tl
+            Nothing ->
+                RenderAsAnchorIconBefore
 
 
-render : RenderStyle -> List (Attribute msg) -> String -> Html msg
-render element attributes buttonText =
+buttonClass : ButtonType -> List ButtonModifier -> Attribute msg
+buttonClass type' modifiers =
+    (typeToString type')
+        :: List.map modifierToString modifiers
+        |> (::) "button"
+        |> String.join " "
+        |> class
+
+
+render : RenderStyle -> List (Attribute msg) -> String -> Maybe (Html msg) -> Html msg
+render element attributes buttonText maybeIcon =
     case element of
         RenderAsButton ->
-            button attributes [ text buttonText ]
+            Html.button attributes [ text buttonText ]
 
-        RenderAsAnchorIconAfter anIcon ->
+        RenderAsAnchorIconAfter ->
             a attributes
-                [ span [] [ text buttonText ], icn anIcon [] ]
+                [ span [] [ text buttonText ], Maybe.withDefault (text "Icon missing") maybeIcon ]
 
-        RenderAsAnchorIconBefore anIcon ->
+        RenderAsAnchorIconBefore ->
             a attributes
-                [ icn anIcon [], span [] [ text buttonText ] ]
+                [ Maybe.withDefault (text "Icon missing") maybeIcon, span [] [ text buttonText ] ]
 
 
 modifierToString : ButtonModifier -> String
@@ -210,10 +301,7 @@ modifierToString modifier =
         BtnDisabled ->
             "is-disabled"
 
-        BtnIcon icon ->
-            ""
-
-        BtnIconAfter icon ->
+        BtnIconAfter ->
             ""
 
 

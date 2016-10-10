@@ -1,13 +1,23 @@
-# Elm project
+**NOT YET RELEASED**
+
+# Elm Bulma Wrapper
+
+This package wraps the CSS flex framework [Bulma.io][http://bulma.io] by
+providing functions that are close to Bulma vocabulary but in slightly more
+human readable way.
 
 ## Getting started
 
-You need to have [Elm](http://elm-lang.org/) 0.17 installed on your machine.
+Install the package
 
-Compile this project with:
+    elm-package install mblarsen/elm-bulma
 
-    elm make src/Main.elm
+Make sure that you include the Bulma CSS files or build them from the SASS
+source files included in the framework.
 
-Then view it:
+Note: If you want to make use of `Bulma.Icons` you also have to include [Font
+Awesome][http://fontawesome.io]
 
-    elm reactor
+## Usage
+
+See package documentation for usage.

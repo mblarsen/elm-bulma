@@ -1,9 +1,15 @@
 **NOT YET RELEASED**
 
+         _          _         _            
+     ___| |_ __ ___| |__ _  _| |_ __  __ _ 
+    / -_) | '  \___| '_ \ || | | '  \/ _` |
+    \___|_|_|_|_|  |_.__/\_,_|_|_|_|_\__,_|
+
+
 # Elm Bulma Wrapper
 
 This package wraps the CSS flex framework [Bulma.io](http://bulma.io) by
-providing functions that are close to Bulma vocabulary but in slightly more
+sroviding functions that are close to Bulma vocabulary but in slightly more
 human readable way.
 
 ## Getting started

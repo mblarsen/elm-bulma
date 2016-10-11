@@ -1,7 +1,6 @@
 module Bulma.Icons
     exposing
         ( Icon(..)
-        , IconSize(..)
         , icon
         , normalIcon
         , smallIcon
@@ -13,7 +12,7 @@ module Bulma.Icons
 
 Make sure to include [Font Awesome](http://fontawesome.io/).
 
-@docs Icon, IconSize, icon, normalIcon, smallIcon, mediumIcon, largeIcon
+@docs Icon, icon, normalIcon, smallIcon, mediumIcon, largeIcon
 -}
 
 import Html exposing (..)
@@ -21,25 +20,9 @@ import Html.Attributes exposing (class)
 import String
 
 
-{-| Icon types
-The icon tags are named in the same way as Font Awesome but in TitleCase and
-without the `fa` prefix.
-
-E.g. `fa-shopping-cart` is named `IconShoppingCart`.
+{-| Icon type
 -}
 type Icon
-    = IconUsd
-    | IconLock
-    | IconShoppingCart
-    | IconTimes
-    | IconAlignLeft
-    | IconAlignCenter
-    | IconAlignRight
-
-
-{-| Size of the icon
--}
-type IconSize
     = IconSmall
     | IconNormal
     | IconMedium
@@ -48,28 +31,28 @@ type IconSize
 
 {-| Creates a normal icon
 -}
-normalIcon : Icon -> List (Attribute msg) -> Html msg
+normalIcon : String -> List (Attribute msg) -> Html msg
 normalIcon anIcon attributes =
     icon IconNormal anIcon attributes
 
 
 {-| Creates a small icon
 -}
-smallIcon : Icon -> List (Attribute msg) -> Html msg
+smallIcon : String -> List (Attribute msg) -> Html msg
 smallIcon anIcon attributes =
     icon IconSmall anIcon attributes
 
 
 {-| Creates a small icon
 -}
-mediumIcon : Icon -> List (Attribute msg) -> Html msg
+mediumIcon : String -> List (Attribute msg) -> Html msg
 mediumIcon anIcon attributes =
     icon IconMedium anIcon attributes
 
 
 {-| Creates a small icon
 -}
-largeIcon : Icon -> List (Attribute msg) -> Html msg
+largeIcon : String -> List (Attribute msg) -> Html msg
 largeIcon anIcon attributes =
     icon IconLarge anIcon attributes
 
@@ -79,17 +62,17 @@ The base function for creating icons. E.g.
 
     icon IconSmall IconShoppingCart []
 -}
-icon : IconSize -> Icon -> List (Attribute msg) -> Html msg
+icon : Icon -> String -> List (Attribute msg) -> Html msg
 icon size anIcon attributes =
     span [ sizeClass size ]
         [ i [ iconClass anIcon ] []
         ]
 
 
-sizeClass : IconSize -> Attribute msg
+sizeClass : Icon -> Attribute msg
 sizeClass size =
     let
-        classString =
+        sizeString =
             case size of
                 IconSmall ->
                     "is-small"
@@ -103,33 +86,9 @@ sizeClass size =
                 IconLarge ->
                     "is-large"
     in
-        class ("icon " ++ classString)
+        class ("icon " ++ sizeString)
 
 
-iconClass : Icon -> Attribute msg
+iconClass : String -> Attribute msg
 iconClass anIcon =
-    let
-        classString =
-            case anIcon of
-                IconUsd ->
-                    "usd"
-
-                IconLock ->
-                    "lock"
-
-                IconShoppingCart ->
-                    "shopping-cart"
-
-                IconTimes ->
-                    "times"
-
-                IconAlignLeft ->
-                    "align-left"
-
-                IconAlignCenter ->
-                    "align-center"
-
-                IconAlignRight ->
-                    "align-right"
-    in
-        class ("fa fa-" ++ classString)
+    class ("fa fa-" ++ anIcon)

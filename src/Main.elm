@@ -76,14 +76,14 @@ view model =
         , buttonGroup
             [ defaultButton [] [] "Click me"
             , button BtnPrimary [] [] "Click me"
-            , defaultButtonWithIcon [] [] "Click me" (smallIcon IconLock [])
-            , buttonWithIcon BtnPrimary [] [] "Click me" (smallIcon IconLock [])
+            , defaultButtonWithIcon [] [] "Click me" (smallIcon "lock" [])
+            , buttonWithIcon BtnPrimary [] [] "Click me" (smallIcon "lock" [])
             ]
             []
         , buttonAddonGroup
-            [ defaultButtonWithIcon [] [] "left" (smallIcon IconAlignLeft [])
-            , defaultButtonWithIcon [] [] "center" (smallIcon IconAlignCenter [])
-            , defaultButtonWithIcon [] [] "right" (smallIcon IconAlignRight [])
+            [ defaultButtonWithIcon [] [] "left" (smallIcon "align-left" [])
+            , defaultButtonWithIcon [] [] "center" (smallIcon "align-center" [])
+            , defaultButtonWithIcon [] [] "right" (smallIcon "align-right" [])
             ]
             []
         , buttonGroup
@@ -96,7 +96,7 @@ view model =
             , button BtnLink [ BtnLoading ] [] "Loading"
             , button BtnLink [ BtnInverted ] [] "Inverted"
             , button BtnLink [ BtnOutlined ] [] "Outlined"
-            , buttonWithIcon BtnLight [ BtnIconAfter ] [] "Outlined" (smallIcon IconTimes [])
+            , buttonWithIcon BtnLight [ BtnIconAfter ] [] "Outlined" (smallIcon "times" [])
             ]
             []
         , buttonGroup
@@ -112,17 +112,17 @@ view model =
             ]
             []
         , buttonGroup
-            [ warningButtonWithIcon [] [] "Unlock" (smallIcon IconLock [])
-            , dangerButtonWithIcon [ BtnSmall, BtnIconAfter ] [] "Delete" (smallIcon IconTimes [])
-            , buttonWithIcon BtnSuccess [ BtnLarge, BtnOutlined ] [] "" (normalIcon IconShoppingCart [])
+            [ warningButtonWithIcon [] [] "Unlock" (smallIcon "lock" [])
+            , dangerButtonWithIcon [ BtnSmall, BtnIconAfter ] [] "Delete" (smallIcon "times" [])
+            , buttonWithIcon BtnSuccess [ BtnLarge, BtnOutlined ] [] "" (normalIcon "shopping-cart" [])
             ]
             []
         , div []
-            [ largeIcon IconShoppingCart []
-            , mediumIcon IconShoppingCart []
-            , normalIcon IconShoppingCart []
-            , smallIcon IconShoppingCart []
-            , icon IconSmall IconShoppingCart []
+            [ largeIcon "shopping-cart" []
+            , mediumIcon "shopping-cart" []
+            , normalIcon "shopping-cart" []
+            , smallIcon "shopping-cart" []
+            , icon IconSmall "shopping-cart" []
             ]
         , div [] [ dangerButton [ BtnLarge ] [] ("Clicks: " ++ (toString model)) ]
         , div [ style [ ( "background-color", "white" ) ] ]
